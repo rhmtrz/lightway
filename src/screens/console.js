@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, Button,
 } from "react-native";
-import { countUp } from "../redux/reducer/pageDataReducer";
+import ChatRoomComponent from '../components/console/chat'; 
+
 
 class ConsultationScreen extends React.Component {
   constructor(props) {
@@ -16,16 +17,8 @@ class ConsultationScreen extends React.Component {
     const { count, countUp, navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>this is consultation screen</Text>
-        <Button
-          title="Count Up"
-          onPress={countUp}
-        />
-        <Text>{count}</Text>
-        <Button
-          title="Go to chat room"
-          onPress={() => navigation.navigate("ChatRoom")}
-        />
+        <Text>hello fucking console</Text>
+        <ChatRoomComponent />
       </View>
     );
   }

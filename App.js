@@ -26,7 +26,6 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
 const HomeIcon = require("./assets/home.png");
 const DiscoverIcon = require("./assets/discover.png");
 const UserIcon = require("./assets/user.png");
