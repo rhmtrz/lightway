@@ -14,6 +14,7 @@ const firebaseConfig = {
   storageBucket: "lightway-71163.appspot.com",
   messagingSenderId: "847060893270"
 };
+firebase.initializeApp(firebaseConfig);
 
 
 let db = null;
@@ -31,10 +32,10 @@ async function loginWithFacebook() {
   };
 }
 
+
 const loader = store => next => (action) => {
   next(action);
   if (action.type === pageDataReducer.INITIALIZE_FIREBASE) {
-    firebase.initializeApp(firebaseConfig);
     db = firebase.firestore();
     db.settings({
       timestampsInSnapshots: true,
