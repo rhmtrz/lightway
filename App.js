@@ -4,7 +4,6 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
 } from "react-navigation";
-import * as firebase from 'firebase'; 
 
 import { StyleSheet, Image } from "react-native";
 import configureStore from "./src/redux/createStore";

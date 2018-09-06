@@ -3,7 +3,7 @@ import React from "react";
 // import PropTypes from "prop-types";
 
 import {
-  StyleSheet, Text, View, 
+  StyleSheet, Text, View,
 } from "react-native";
 import LikedComponent from "./like";
 import BookmarkedComponent from "./bookemark";

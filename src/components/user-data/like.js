@@ -4,7 +4,6 @@ import React from "react";
 import {
   StyleSheet, View,
 } from "react-native";
-import LoginByFacebook from "../login/login-fb";
 
 
 const styles = StyleSheet.create({
@@ -34,7 +33,7 @@ class LikedComponent extends React.Component {
   render() {
     return (
       <View style={styles.userAccount}>
-        <LoginByFacebook />
+        this is login page
       </View>
     );
   }

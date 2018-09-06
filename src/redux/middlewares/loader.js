@@ -1,9 +1,7 @@
-import * as firebase from 'firebase';
 import Expo from 'expo';
-
-import * as pageDataReducer from '../reducer/pageDataReducer';
-
+import * as firebase from 'firebase';
 import 'firebase/firestore';
+import * as pageDataReducer from '../reducer/pageDataReducer';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -14,8 +12,6 @@ const firebaseConfig = {
   storageBucket: "lightway-71163.appspot.com",
   messagingSenderId: "847060893270"
 };
-
-
 let db = null;
 let collection = null;
 
@@ -31,16 +27,19 @@ async function loginWithFacebook() {
   };
 }
 
+firebase.initializeApp(firebaseConfig);
+
 const loader = store => next => (action) => {
   next(action);
   if (action.type === pageDataReducer.INITIALIZE_FIREBASE) {
-    firebase.initializeApp(firebaseConfig);
     db = firebase.firestore();
     db.settings({
       timestampsInSnapshots: true,
     });
-    collection = db.collection('posts');
+    collection = db.collection('messages');
     console.log("fire", firebase);
+
+    loginWithFacebook();
   }
 
   if (action.type === pageDataReducer.REQUEST_FB_LOGIN) {
@@ -53,13 +52,13 @@ const loader = store => next => (action) => {
             .then((res) => {
               // eslint-disable-next-line no-console
               console.log(res);
-              //store.dispatch(pageDataReducer.successToFbLogin(res));
+              store.dispatch(pageDataReducer.successToFbLogin(res));
             })
-            // .catch((err) => {
-            //   // eslint-disable-next-line no-console
-            //   console.log(err);
-            //   store.dispatch(pageDataAction.failedToFbLogin(err));
-            // });
+            .catch((err) => {
+              // eslint-disable-next-line no-console
+              console.log(err);
+              store.dispatch(pageDataAction.failedToFbLogin(err));
+            });
         }
       })
       .catch((err) => {
