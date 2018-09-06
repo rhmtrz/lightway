@@ -79,10 +79,10 @@ UserStack.navigationOptions = {
 
 
 const MainTabNavigator = createBottomTabNavigator({
-  User: UserStack,
-  DiscoverScreen: DiscoverStack,
   HomeScreen: HomeStack,
+  DiscoverScreen: DiscoverStack,
   Consoletation: ConsoleStack,
+  User: UserStack,
 
 });
 

@@ -38,8 +38,6 @@ const loader = store => next => (action) => {
     });
     collection = db.collection('messages');
     console.log("fire", firebase);
-
-    loginWithFacebook();
   }
 
   if (action.type === pageDataReducer.REQUEST_FB_LOGIN) {
@@ -54,11 +52,11 @@ const loader = store => next => (action) => {
               console.log(res);
               store.dispatch(pageDataReducer.successToFbLogin(res));
             })
-            .catch((err) => {
-              // eslint-disable-next-line no-console
-              console.log(err);
-              store.dispatch(pageDataAction.failedToFbLogin(err));
-            });
+            // .catch((err) => {
+            //   // eslint-disable-next-line no-console
+            //   console.log(err);
+            //   store.dispatch(pageDataAction.failedToFbLogin(err));
+             });
         }
       })
       .catch((err) => {

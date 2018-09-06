@@ -25,18 +25,21 @@ class UserScreen extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  //
+  // componentDidMount = () => {
+  //   const { initializeFirebase } = this.props;
+  //   initializeFirebase();
+  // }
 
   render() {
     const { isUserLoggedIn } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.userAccount}>
+        {/* <View style={styles.userAccount}>
           {isUserLoggedIn ?
-            <UserAccount /> :
-            <Login />}
+            <Login /> : <UserAccount />}
         </View>
-        <UserDataContainer />
+        <UserDataContainer /> */}
       </View>
     );
   }
@@ -49,5 +52,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    initializeFirebase: () => dispatch(_initializeFirebase()),
+  }
+};
 
-export default connect(mapStateToProps, null)(UserScreen);
+export default UserScreen;
+//export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);

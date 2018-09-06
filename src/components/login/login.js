@@ -8,7 +8,6 @@ import {
 } from "react-native";
 
 import {
-  initializeFirebase as _initializeFirebase,
   fbLogin as _fbLogin,
 } from '../../redux/reducer/pageDataReducer';
 
@@ -37,14 +36,9 @@ class LoginByFacebook extends React.Component {
 
   }
 
-  componentDidMount = () => {
-    const { initializeFirebase } = this.props;
-    initializeFirebase();
-  }
-
   render() {
     const { email, password } = this.state;
-    const { fbLogin, loading, displayName, isUserLoggedIn, photoURL } = this.props;
+    const { fbLogin } = this.props;
     return (
       <View style={styles.userAccount}>
         <TouchableOpacity
@@ -66,7 +60,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    initializeFirebase: () => dispatch(_initializeFirebase()),
     fbLogin: () => dispatch(_fbLogin())
   }
 };
