@@ -7,14 +7,12 @@ export const countUp = createAction(COUNT_UP);
 export const INITIALIZE_FIREBASE = 'INITIALIZE_FIREBASE';
 export const initializeFirebase = createAction(INITIALIZE_FIREBASE);
 
-export const SEND_MESSAGE_TO_FIREBASE = 'SEND_MESSAGE_TO_FIREBASE';
-export const sendMessageToFirebase = createAction(SEND_MESSAGE_TO_FIREBASE);
+export const REQUEST_FB_LOGIN = 'REQUEST_FB_LOGIN';
+export const fbLogin = createAction(REQUEST_FB_LOGIN);
 
-export const GET_MESSAGE_FROM_FIREBASE = 'GET_MESSAGE_FROM_FIREBASE';
-export const getMessageFromFirebase = createAction(GET_MESSAGE_FROM_FIREBASE);
+export const FB_LOGIN_SUCCESS = 'FB_LOGIN_SUCCESS';
+export const successToFbLogin = createAction(FB_LOGIN_SUCCESS);
 
-export const GET_MESSAGE_SUCCESS = 'GET_MESSAGE_SUCCESS';
-export const successToGetMessage = createAction(GET_MESSAGE_SUCCESS);
 
 const initialState = {
   msg: 'initial state dayo',
@@ -25,34 +23,19 @@ const initialState = {
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case INITIALIZE_FIREBASE: {
-      console.log(action);
-      
       return {
         ...state,
         msg: 'initializing...',
       };
     }
 
-    case SEND_MESSAGE_TO_FIREBASE: {
-      return state;
-    }
-
-    case GET_MESSAGE_FROM_FIREBASE: {
+    case REQUEST_FB_LOGIN: {
       return {
         ...state,
-        msg: 'loading msg....',
         loading: true,
       };
     }
 
-    case GET_MESSAGE_SUCCESS: {
-      return {
-        ...state,
-        msg: 'success to get message',
-        loading: false,
-      };
-    }
-  
     case COUNT_UP: {
       const { count } = state;
       return {
