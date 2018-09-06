@@ -4,7 +4,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator,
 } from "react-navigation";
-import * as firebase from 'firebase'; 
+import * as firebase from 'firebase';
 
 import { StyleSheet, Image } from "react-native";
 import configureStore from "./src/redux/createStore";
@@ -80,10 +80,10 @@ UserStack.navigationOptions = {
 
 
 const MainTabNavigator = createBottomTabNavigator({
-  User: UserStack,
-  DiscoverScreen: DiscoverStack,
   HomeScreen: HomeStack,
+  DiscoverScreen: DiscoverStack,
   Consoletation: ConsoleStack,
+  User: UserStack,
 
 });
 

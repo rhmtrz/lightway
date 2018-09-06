@@ -2,9 +2,8 @@ import React from "react";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import {
-  StyleSheet, View,
+  StyleSheet, View, Text
 } from "react-native";
-import LoginByFacebook from "../login/login-fb";
 
 
 const styles = StyleSheet.create({
@@ -18,23 +17,13 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 3,
   },
-  name: {
-    marginLeft: 10,
-  },
-  qrCode: {
-    marginLeft: "auto",
-  },
-  qrCodeImg: {
-    width: 40,
-    height: 33,
-  },
 });
 
 class LikedComponent extends React.Component {
   render() {
     return (
       <View style={styles.userAccount}>
-        <LoginByFacebook />
+        <Text>this is like page</Text>
       </View>
     );
   }

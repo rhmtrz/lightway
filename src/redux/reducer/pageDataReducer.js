@@ -13,14 +13,19 @@ export const fbLogin = createAction(REQUEST_FB_LOGIN);
 export const FB_LOGIN_SUCCESS = 'FB_LOGIN_SUCCESS';
 export const successToFbLogin = createAction(FB_LOGIN_SUCCESS);
 
+const SAMPLE_PHOTO_URL = require("../../../assets/user.png");
 
 const initialState = {
   msg: 'initial state dayo',
   loading: false,
+  displayName: '',
+  uid: '',
+  photoURL: SAMPLE_PHOTO_URL,
+  isUserLoggedIn: false,
   count: 0,
 };
 
-const counterReducer = (state = initialState, action) => {
+const pageData = (state = initialState, action) => {
   switch (action.type) {
     case INITIALIZE_FIREBASE: {
       return {
@@ -36,6 +41,19 @@ const counterReducer = (state = initialState, action) => {
       };
     }
 
+    case FB_LOGIN_SUCCESS: {
+      const { user } = action.payload;
+      const { displayName, photoURL, uid } = user;
+      return {
+        ...state,
+        loading: false,
+        displayName,
+        photoURL,
+        uid,
+        isUserLoggedIn: true,
+      };
+    }
+
     case COUNT_UP: {
       const { count } = state;
       return {
@@ -48,4 +66,4 @@ const counterReducer = (state = initialState, action) => {
   }
 };
 
-export default counterReducer;
+export default pageData;
