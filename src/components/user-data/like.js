@@ -1,9 +1,13 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import {
-  StyleSheet, View, Text
+  StyleSheet, View, Text, Button
 } from "react-native";
+
+import {
+  fbLogout as _fbLogout,
+} from '../../redux/reducer/pageDataReducer';
 
 
 const styles = StyleSheet.create({
@@ -21,12 +25,21 @@ const styles = StyleSheet.create({
 
 class LikedComponent extends React.Component {
   render() {
+    const { fbLogout } = this.props;
     return (
       <View style={styles.userAccount}>
-        <Text>this is like page</Text>
+        <Button
+          onPress={fbLogout}
+          title="Logout" />
       </View>
     );
   }
 }
 
-export default LikedComponent;
+const mapDispatchToProps = dispatch => {
+  return {
+    fbLogout: () => dispatch(_fbLogout())
+  }
+};
+
+export default connect(null, mapDispatchToProps)(LikedComponent);

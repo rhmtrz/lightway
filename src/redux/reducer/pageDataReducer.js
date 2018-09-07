@@ -13,6 +13,19 @@ export const fbLogin = createAction(REQUEST_FB_LOGIN);
 export const FB_LOGIN_SUCCESS = 'FB_LOGIN_SUCCESS';
 export const successToFbLogin = createAction(FB_LOGIN_SUCCESS);
 
+export const REQUEST_FB_LOGOUT = 'REQUEST_FB_LOGOUT';
+export const fbLogout = createAction(REQUEST_FB_LOGOUT);
+
+export const FB_LOGOUT_SUCCESS = 'FB_LOGOUT_SUCCESS';
+export const successToFbLogout = createAction(FB_LOGOUT_SUCCESS);
+
+export const FB_LOGIN_FAILED = 'FB_LOGIN_FAILED';
+export const failedToFbLogin = createAction(FB_LOGIN_FAILED);
+
+export const FB_LOGOUT_FAILED = 'FB_LOGOUT_FAILED';
+export const failedToFbLogout = createAction(FB_LOGOUT_FAILED);
+
+
 const SAMPLE_PHOTO_URL = require("../../../assets/user.png");
 
 const initialState = {
@@ -51,6 +64,38 @@ const pageData = (state = initialState, action) => {
         photoURL,
         uid,
         isUserLoggedIn: true,
+      };
+    }
+
+    case FB_LOGIN_FAILED: {
+      return {
+        ...state,
+        loading: false,
+        isUserLoggedIn: false,
+      };
+    }
+
+    case REQUEST_FB_LOGOUT: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+
+    case FB_LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        displayName: '',
+        photoURL: SAMPLE_PHOTO_URL,
+        loading: false,
+        isUserLoggedIn: false,
+      };
+    }
+
+    case FB_LOGOUT_FAILED: {
+      return {
+        ...state,
+        loading: false,
       };
     }
 

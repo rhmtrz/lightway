@@ -55,17 +55,27 @@ const loader = store => next => (action) => {
               console.log(res);
               store.dispatch(pageDataReducer.successToFbLogin(res));
             })
-            // .catch((err) => {
-            //   // eslint-disable-next-line no-console
-            //   console.log(err);
-            //   store.dispatch(pageDataAction.failedToFbLogin(err));
-            // });
+            .catch((err) => {
+              // eslint-disable-next-line no-console
+              console.log(err);
+              store.dispatch(pageDataAction.failedToFbLogin(err));
+            });
         }
       })
       .catch((err) => {
-        //store.dispatch(pageDataAction.failedToFbLogin(err));
+        store.dispatch(pageDataAction.failedToFbLogin(err));
       });
   }
+
+  if (action.type === pageDataReducer.REQUEST_FB_LOGOUT) {
+  firebase.auth().signOut()
+    .then((res) => {
+      store.dispatch(pageDataReducer.successToFbLogout(res));
+    })
+    .catch((err) => {
+      store.dispatch(pageDataReducer.failedToFbLogout(err));
+    });
+}
 
 };
 
