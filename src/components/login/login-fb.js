@@ -25,16 +25,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 3,
   },
-  name: {
-    marginLeft: 10,
-  },
-  qrCode: {
-    marginLeft: "auto",
-  },
-  qrCodeImg: {
-    width: 40,
-    height: 33,
-  },
 });
 
 
@@ -61,36 +51,13 @@ class LoginByFacebook extends React.Component {
     const { fbLogin } = this.props;
     return (
       <View style={styles.userAccount}>
-        <Text>Email</Text>
-          <TextInput
-            textContentType = "emailAddress"
-            onChangeText={(email) => this.setState({ email })}
-            value={this.state.email}
-        />
-        <Text>Password</Text>
-          <TextInput
-            textContentType = "password"
-            onChangeText={(password) => this.setState({ password })}
-            value={this.state.password}
-        />
-
         <Button
           onPress={fbLogin}
-          title="Login By Facebook"
-        />
+          title="Login By Facebook"/>
       </View>
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   const { loading, displayName, isUserLoggedIn } = state.pageData;
-//   return {
-//     loading,
-//     displayName,
-//     isUserLoggedIn,
-//   };
-// };
 
 const mapDispatchToProps = dispatch => {
   return {

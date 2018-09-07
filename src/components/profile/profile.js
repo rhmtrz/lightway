@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 
 import {
@@ -37,18 +37,17 @@ const styles = StyleSheet.create({
 
 class UserAccount extends React.Component {
   render() {
+    const { displayName, photoURL } = this.props;
     return (
       <View style={styles.userAccount}>
         <View>
           <Image
-            source={UserIcon}
+            source={photoURL}
             style={styles.photo}
           />
         </View>
         <View style={styles.name}>
-          <Text>
-            My name is ...
-          </Text>
+          <Text>{displayName}</Text>
           <Text>
             My ID is ...
           </Text>
@@ -64,4 +63,13 @@ class UserAccount extends React.Component {
   }
 }
 
-export default UserAccount;
+const mapStateToProps = (state) => {
+  const { displayName,
+  photoURL, } = state.pageData;
+  return {
+    displayName,
+    photoURL,
+  };
+};
+
+export default connect(mapStateToProps, null)(UserAccount);

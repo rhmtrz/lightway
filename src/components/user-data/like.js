@@ -1,10 +1,13 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import {
-  StyleSheet, View,
+  StyleSheet, View, Text, Button
 } from "react-native";
-import LoginByFacebook from "../login/login-fb";
+
+import {
+  fbLogout as _fbLogout,
+} from '../../redux/reducer/pageDataReducer';
 
 
 const styles = StyleSheet.create({
@@ -18,26 +21,25 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 3,
   },
-  name: {
-    marginLeft: 10,
-  },
-  qrCode: {
-    marginLeft: "auto",
-  },
-  qrCodeImg: {
-    width: 40,
-    height: 33,
-  },
 });
 
 class LikedComponent extends React.Component {
   render() {
+    const { fbLogout } = this.props;
     return (
       <View style={styles.userAccount}>
-        <LoginByFacebook />
+        <Button
+          onPress={fbLogout}
+          title="Logout" />
       </View>
     );
   }
 }
 
-export default LikedComponent;
+const mapDispatchToProps = dispatch => {
+  return {
+    fbLogout: () => dispatch(_fbLogout())
+  }
+};
+
+export default connect(null, mapDispatchToProps)(LikedComponent);

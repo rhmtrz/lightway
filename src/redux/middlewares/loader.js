@@ -2,7 +2,6 @@ import * as firebase from 'firebase';
 import Expo from 'expo';
 
 import * as pageDataReducer from '../reducer/pageDataReducer';
-
 import 'firebase/firestore';
 
 // Initialize Firebase
@@ -40,7 +39,7 @@ const loader = store => next => (action) => {
     db.settings({
       timestampsInSnapshots: true,
     });
-    collection = db.collection('posts');
+    collection = db.collection('messages');
     console.log("fire", firebase);
   }
 
@@ -54,19 +53,29 @@ const loader = store => next => (action) => {
             .then((res) => {
               // eslint-disable-next-line no-console
               console.log(res);
-              //store.dispatch(pageDataReducer.successToFbLogin(res));
+              store.dispatch(pageDataReducer.successToFbLogin(res));
             })
-            // .catch((err) => {
-            //   // eslint-disable-next-line no-console
-            //   console.log(err);
-            //   store.dispatch(pageDataAction.failedToFbLogin(err));
-            // });
+            .catch((err) => {
+              // eslint-disable-next-line no-console
+              console.log(err);
+              store.dispatch(pageDataAction.failedToFbLogin(err));
+            });
         }
       })
       .catch((err) => {
-        //store.dispatch(pageDataAction.failedToFbLogin(err));
+        store.dispatch(pageDataAction.failedToFbLogin(err));
       });
   }
+
+  if (action.type === pageDataReducer.REQUEST_FB_LOGOUT) {
+  firebase.auth().signOut()
+    .then((res) => {
+      store.dispatch(pageDataReducer.successToFbLogout(res));
+    })
+    .catch((err) => {
+      store.dispatch(pageDataReducer.failedToFbLogout(err));
+    });
+}
 
 };
 
